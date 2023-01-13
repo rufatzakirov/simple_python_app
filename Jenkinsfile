@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-	ANSIBLE_PRIVATE_KEY=credentials('ssh-key') 	
-	}
     triggers {
       pollSCM '* * * * *'
 	}
@@ -30,7 +27,7 @@ pipeline {
         stage("Deploy") {
             steps {
                 echo "--- Deploy ---"
-                sh "ansible-playbook docker.yaml -i inventory --private-key=$ANSIBLE_PRIVATE_KEY -u ansible --become"   
+                sh "docker run -d --name flask-app-$BUILD_ID -p 80$BUILD_ID:8080 rufatzakirov/first_pipeline:v$BUILD_ID "   
             }
         }
     }
