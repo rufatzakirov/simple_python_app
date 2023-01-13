@@ -12,7 +12,7 @@ pipeline {
         stage("Build") {
             steps {
                 echo "--- Build ---"
-                sh "docker buildd -t rufatzakirov/first_pipeline:v$BUILD_ID ."
+                sh "docker build -t rufatzakirov/first_pipeline:v$BUILD_ID ."
             }
         }
         stage("Push DockerHUB") {
