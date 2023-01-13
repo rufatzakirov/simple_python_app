@@ -1,0 +1,41 @@
+- name:
+  hosts: all
+  vars_files:
+    - vars/credentials
+  tasks:
+  - name: Install yum utils
+    yum:
+      name:
+      - yum-utils
+      - lvm2
+  - name: add repo docker
+    get_url:
+      url: https://download.docker.com/linux/centos/docker-ce.repo
+      dest: /etc/yum.repos.d/docker-ce.repo
+      mode: 0644
+  - name: Istall Docker Engine
+    yum:
+      name:
+        - docker-ce
+      state: present
+  - name: start service docker
+    service:
+      name: docker
+      state: started
+      enabled: yes
+  - name: install requirements
+    pip:
+      name: 
+        - requests
+        - docker
+
+  - name: docker login
+    docker_login:
+      username: "{{ username }}"
+      password: "{{ password }}"
+  - name: run container
+    docker_container:
+      name: app
+      image: rufatzakirov/flask:v1
+      ports: 
+        - "{{ port }}:5000"
