@@ -3,7 +3,7 @@ import datetime
 
 app = Flask(__name__)
 
-@app.route('/date3')
+@app.route('/date4')
 def index():
     dateNow = datetime.date.today().strftime("%m/%d/%Y")
     return jsonify(date=dateNow)
