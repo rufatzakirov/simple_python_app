@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+	ANSIBLE_PRIVATE_KEY=crendetials('ssh-key')
+	}
     triggers {
       pollSCM '* * * * *'
 	}
@@ -27,7 +30,7 @@ pipeline {
         stage("Deploy") {
             steps {
                 echo "--- Deploy ---"
-                sh "ansible-playbook playbook.yaml -i inventory"   
+                sh "ansible-playbook playbook.yaml -i inventory --private-key=$ANSIBLE_PRIVATE_KEY"   
             }
         }
     }
