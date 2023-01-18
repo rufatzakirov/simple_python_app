@@ -30,7 +30,7 @@
   - name: download image and start container
     docker_container:
       name: flask-app{{ BUILD_ID }}
-      image: rufatzakirov/first-pipeline:v{{ BUILD_ID }}
+      image: rufatzakirov/first_pipeline:v{{ BUILD_ID }}
       ports:
         - "5000:8080"
 
