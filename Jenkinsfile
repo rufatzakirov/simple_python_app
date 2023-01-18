@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-	ANSIBLE_PRIVATE_KEY=crendetials('ssh-key')
+	ANSIBLE_PRIVATE_KEY=credentials('ssh-key')
 	}
     triggers {
       pollSCM '* * * * *'
