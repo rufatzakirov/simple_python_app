@@ -27,7 +27,7 @@ pipeline {
         stage("Deploy") {
             steps {
                 echo "--- Deploy ---"
-                sh "ansible-playbook playbook.yaml"   
+                sh "ansible-playbook playbook.yaml -i inventory"   
             }
         }
     }
