@@ -27,7 +27,7 @@ pipeline {
         stage("Deploy") {
             steps {
                 echo "--- Deploy ---"
-                sh "ansible-playbook docker.yaml -i inventory -u ansible --become "
+                sh "ansiblePlaybook credentialsId: 'ssh-key', inventory: 'inventory', playbook: 'docker.yaml' "
             }
         }
     }
