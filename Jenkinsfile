@@ -27,7 +27,7 @@ pipeline {
         stage("Deploy") {
             steps {
                 echo "--- Deploy ---"
-                sh "docker run -d --name flask-app-$BUILD_ID -p 80$BUILD_ID:8080 rufatzakirov/first_pipeline:v$BUILD_ID"
+                sh "docker run -d --name flask-app-$BUILD_ID -p 80$BUILD_ID:8080 rufatzakirov/first_pipeline:v$BUILD_ID "   
             }
         }
     }
