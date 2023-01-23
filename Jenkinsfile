@@ -15,7 +15,7 @@ pipeline {
         stage("Build") {
             steps {
                 echo "--- Build ---"
-                sh "docker build -t rufatzakirov/$JOB_ID:v$BUILD_ID ."
+                sh "docker build -t rufatzakirov/$JOB_NAME:v$BUILD_ID ."
             }
         }
         stage("Push DockerHUB") {
@@ -23,7 +23,7 @@ pipeline {
                 echo "--- Push DockerHUB ---"
                 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
                 sh "docker login -u $user -p $pass"
-                sh "docker push rufatzakirov/$JOB_ID:v$BUILD_ID"
+                sh "docker push rufatzakirov/$JOB_NAME:v$BUILD_ID"
                 }
             }
         }
